@@ -7,6 +7,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -28,7 +29,6 @@ class ProductController extends Controller
     public function index()
     {
         return $this->service->getAllProductsService();
-
     }
 
     /**
@@ -47,10 +47,24 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request) //ProductRequest for validade
     {
-        $product =  $this->service->insertService($request->all());
-        return $product;
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required',
+            'tension' => 'required',
+            'brand_id' => 'required|exists:brands,id'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        } else {
+            $product =  $this->service->insertService($request->all());
+            return response()->json([
+                'message' => 'Produto criado com sucesso',
+                'newProduct' => $product
+            ]);
+        }
     }
 
     /**
@@ -73,7 +87,6 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-
     }
 
     /**
@@ -83,9 +96,24 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(Request $request, Product $product) //ProductRequest
     {
-        return $this->service->updateService($request->all(), $product);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description' => 'required',
+            'tension' => 'required',
+            'brand_id' => 'required|exists:brands,id'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        } else {
+            $product = $this->service->updateService($request->all(), $product);
+            return response()->json([
+                'message' => 'Produto editado com sucesso',
+                'updateProduct' => $product
+            ]);
+        }
     }
 
     /**

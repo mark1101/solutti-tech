@@ -5719,7 +5719,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.errors = {};
       })["catch"](function (error) {
         if (error.response.status == 422) {
-          _this2.errors = error.response.data.errors;
+          _this2.errors = error.response.data;
         }
       });
     }
@@ -5770,7 +5770,7 @@ __webpack_require__.r(__webpack_exports__);
       });
       swalWithBootstrapButtons.fire({
         title: 'Apagar o produto?',
-        text: "Essa ação não pode ser revertida",
+        text: "Essa ação não pode ser desfeita",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sim, apagar agora!',
@@ -5838,7 +5838,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       })["catch"](function (error) {
         if (error.response.status == 422) {
-          _this2.errors = error.response.data.errors;
+          _this2.errors = error.response.data;
         }
       });
     }

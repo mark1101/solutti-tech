@@ -30,4 +30,14 @@ class ProductRequest extends FormRequest
             'brand_id' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'O nome do produto é obrigatório',
+            'description.required' => 'O descrição do produto é obrigatória',
+            'tension.email' => 'O tensão do produto é obrigatória',
+            'brand_id' => '0 o produto deve ter uma marca obrigatória'
+        ];
+    }
 }

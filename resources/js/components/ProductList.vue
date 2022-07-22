@@ -63,7 +63,7 @@ export default ({
 
             swalWithBootstrapButtons.fire({
                 title: 'Apagar o produto?',
-                text: "Essa ação não pode ser revertida",
+                text: "Essa ação não pode ser desfeita",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Sim, apagar agora!',
