@@ -24,10 +24,10 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string|required',
-            'description' => 'string|required',
-            'tension' => 'string|required',
-            'brand_id' => 'required|exists:brands,id'
+            'name' => 'required',
+            'description' => 'required',
+            'tension' => 'required',
+            'brand_id' => 'required'
         ];
     }
 }

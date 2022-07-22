@@ -27,10 +27,8 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = $this->service->getAllProductsService();
-        return view('Product.list', [
-            'products' => $products
-        ]);
+        return $this->service->getAllProductsService();
+
     }
 
     /**
@@ -51,7 +49,8 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        return $this->service->insertService($request->validate());
+        $product =  $this->service->insertService($request->all());
+        return $product;
     }
 
     /**
@@ -74,7 +73,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -86,7 +85,7 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-        return $this->service->updateService($request->validate(), $product);
+        return $this->service->updateService($request->all(), $product);
     }
 
     /**

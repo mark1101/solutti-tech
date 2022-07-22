@@ -2,19 +2,25 @@
 
 namespace App\Repositories;
 
-use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
 class ProductRepository
 {
+    /**
+     * @return Collection
+     */
     public function getAllProducts()
     {
         return Product::with('brand')->get();
     }
 
-    public function insert(array $data)
+    /**
+     * @param array $data
+     * @return Product
+     */
+    public function insert(array $data): Product
     {
         try {
             DB::beginTransaction();
@@ -27,13 +33,17 @@ class ProductRepository
         }
     }
 
-    public function update(array $data, int $product_id)
+    /**
+     * @param int $id
+     * @param array $data
+     * @return Product
+     */
+    public function update(array $data, int $product_id): Product
     {
         try {
             DB::beginTransaction();
             $product = Product::find($product_id);
-            $product->fill($data);
-            $product->save();
+            $product->update($data);
             DB::commit();
             return $product;
         } catch (Exception $err) {
@@ -42,6 +52,10 @@ class ProductRepository
         }
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function destroy(int $product_id)
     {
         $product = Product::find($product_id);
