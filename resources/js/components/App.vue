@@ -8,10 +8,12 @@
                 </div>
             </div>
         </nav>
-        <router-view> </router-view>
+        <div class="container p-5">
+            <router-view> </router-view>
+        </div>
     </div>
 </template>
 
 <script>
-    export default {}
+export default {}
 </script>

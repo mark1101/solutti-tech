@@ -5831,11 +5831,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.put("/api/products/".concat(this.$route.params.id), this.product).then(function (response) {
         _this2.success = true;
-        _this2.errors = {};
-
-        _this2.$router.push({
-          name: 'home'
-        });
+        _this2.errors = {}; //this.$router.push({ name: 'home' });
       })["catch"](function (error) {
         if (error.response.status == 422) {
           _this2.errors = error.response.data;
@@ -5881,7 +5877,9 @@ var render = function render() {
     attrs: {
       to: "/create"
     }
-  }, [_vm._v("Cadastrar Produto")])], 1)])]), _vm._v(" "), _c("router-view")], 1);
+  }, [_vm._v("Cadastrar Produto")])], 1)])]), _vm._v(" "), _c("div", {
+    staticClass: "container p-5"
+  }, [_c("router-view")], 1)]);
 };
 
 var staticRenderFns = [];
@@ -6285,22 +6283,22 @@ var render = function render() {
     }
   }, [_vm._v("220v")])]), _vm._v(" "), _vm.errors && _vm.errors.tension ? _c("div", {
     staticClass: "alert alert-danger"
-  }, [_vm._v("\n                        " + _vm._s(_vm.errors.tension[0]) + "\n                    ")]) : _vm._e()]), _vm._v(" "), _vm._m(0)])])])]);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
+  }, [_vm._v("\n                        " + _vm._s(_vm.errors.tension[0]) + "\n                    ")]) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "form-group mt-2"
-  }, [_c("button", {
+  }, [_c("router-link", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      to: "/"
+    }
+  }, [_vm._v("Voltar para Lista ")]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Editar")])]);
-}];
+  }, [_vm._v("Editar")])], 1)])])])]);
+};
+
+var staticRenderFns = [];
 render._withStripped = true;
 
 

@@ -39,6 +39,7 @@
                         </div>
                     </div>
                     <div class="form-group mt-2">
+                        <router-link to="/" class="btn btn-primary">Voltar para Lista </router-link>
                         <button type="submit" class="btn btn-primary">Editar</button>
                     </div>
                 </form>
@@ -73,7 +74,8 @@ export default {
                 .then((response) => {
                     this.success = true;
                     this.errors = {};
-                    this.$router.push({ name: 'home' });
+
+                    //this.$router.push({ name: 'home' });
                 }).catch(error => {
                     if (error.response.status == 422) {
                         this.errors = error.response.data;
