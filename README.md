@@ -28,8 +28,10 @@ Para testar essa funcionalidade que foi aplicada no registro e edição de produ
 
 i. `POST` - /api/produtos  (loja_id é um atributo que se refere ao id na loja)
 
+http://127.0.0.1:8000/api/produtos?nome=Armario&valor=1090&loja_id=1 //requisicao postman
+
 `{
-   "nome" : "Geladeira",
+   "nome" : "Armario",
    "valor" : 1090,
    "loja_id": 1 //inicialmente deverá ser registrado uma loja dentro do banco de dados
 }`
@@ -37,12 +39,16 @@ i. `POST` - /api/produtos  (loja_id é um atributo que se refere ao id na loja)
 ii. Resposta:  
 Sucess. 
 `{
-    "mensagem": "Produto criado com sucesso",
-    "novo produto": {
-        "nome": "geladeira",
-        "valor": R$ 1090.00,
-        "loja_id": 1,
-        //dados de criacao como created_at e updated_at
+    "message": "Produto criado com sucesso",
+    "novo produto: ": {
+        "nome": "Armario",
+        "valor": "1090",
+        "loja_id": "1",
+        "ativo": 1,
+        "updated_at": "2022-10-30T18:47:54.000000Z",
+        "created_at": "2022-10-30T18:47:54.000000Z",
+        "id": 5,
+        "mensagem": "Criado" // mensagem que será enviada pelo email
     }
 }`
 
@@ -64,8 +70,10 @@ Erros Exemplo.
 
 ii. `PUT` - /api/produtos/{id} 
 
+http://127.0.0.1:8000/api/produtos/5?nome=Armario 3 portas&valor=1090&loja_id=1 //requisicao postman
+
 `{
-   "nome" : "Geladeira Vermelha",
+   "nome" : "Armario 3 portas",
    "valor" : 1090, 
    "loja_id": 1
 }`
@@ -74,11 +82,26 @@ ii. Resposta:
 
 success.
 `{
-    "mensagem": "mensagem de sucesso",
+   "message": "Produto editado com sucesso",
+    "produto editado: ": {
+        "id": 5,
+        "nome": "Armario 3 portas",
+        "valor": "1090",
+        "loja_id": "1",
+        "ativo": 1,
+        "created_at": "2022-10-30T18:47:54.000000Z",
+        "updated_at": "2022-10-30T18:49:57.000000Z",
+        "mensagem": "Editado"
+    }
 }`
 
 error. 
-'cai em campos de validação'
+
+{
+   "valor": [
+       "O campo valor é obrigatório."
+   ]
+}
 
 `3. Exclusão:` 
 
@@ -88,9 +111,8 @@ ii. Resposta
 
 sucess. 
 `{
-    "status": "success",
     "message": "Produto apagado com sucesso"
-}`
+`}
 
 error. 
 `{
