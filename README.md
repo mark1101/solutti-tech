@@ -12,78 +12,69 @@ O projeto deverá ser iniciado na máquina com a criação do banco de dados, em
 
 copia do `.env.exemple` para `.env` e configurando as chaves de acesso ao banco de dados 
 
-para finalização de configuração rode o comando `php artisan key:generate` e `php artisan migrate --seed` para iniciar as tabelas e inserir alguns dados
+para finalização de configuração rode o comando `php artisan key:generate`
  
 Pronto! a aplicação está pronta para ser usada. 
 
 Rode o comando php `artisan serve` e acesse o link do servidor criado.
 
-## Exemplos de requisições 
+## Testes de Emails 
+
+Para testar essa funcionalidade que foi aplicada no registro e edição de produtos, deverá ser configurado o .env da aplicação com o email que será usado para realizar o disparo de email, todas as funções e layout de email foram criados com suas devidas mensagens.
+
+## Exemplos de requisições para produtos em questão da loja segue a mesma linha de rotas com /api/lojas e os tipos de requisições. 
 
 `1. Criação:` 
 
-i. `POST` - /api/products  (brand_id é um atributo que se refere ao id na marca, que já é cadastrada dentro do banco de dados com o comando php artisan migrate --seed)
+i. `POST` - /api/produtos  (loja_id é um atributo que se refere ao id na loja)
 
 `{
    "name" : "Geladeira",
-   "descripion" : "Este produto é totalmente versátil. Tudo para ser
-    personalizado para comportar o que você preferir.",
-   "tension": "220v",
-   "brand_id": 1
+   "valor" : 1090,
+   "loja_id": 1 //inicialmente deverá ser registrado uma loja dentro do banco de dados
 }`
 
 ii. Resposta:  
 Sucess. 
 `{
-    "message": "Produto criado com sucesso",
-    "newProduct": {
-        "name": "nome2",
-        "description": "descricao",
-        "tension": "110",
-        "brand_id": "1",
-        "updated_at": "2022-07-22T06:39:50.000000Z",
-        "created_at": "2022-07-22T06:39:50.000000Z",
-        "id": 14
+    "mensagem": "Produto criado com sucesso",
+    "novo produto": {
+        "nome": "geladeira",
+        "valor": R$ 1090.00,
+        "loja_id": 1,
+        //dados de criacao como created_at e updated_at
     }
 }`
 
-Erros. 
+Erros Exemplo. 
 `{
-    "description": [
-        "O campo description é obrigatório."
+    "nome": [
+        "O campo nome é obrigatório."
     ],
-    "tension": [
-        "O campo tension é obrigatório."
+    "valor": [
+        "O campo valor é obrigatório."
+    ],
+    "loja_id": [
+        "O campo loja é obrigatório."
     ]
 }`
 
 
 `2. Atualização:` 
 
-ii. `PUT` - /api/products/{id}  (brand_id é um atributo que se refere ao id na marca, que já é cadastrada dentro do banco de dados com o comando php artisan migrate --seed)
+ii. `PUT` - /api/produtos/{id} 
 
 `{
-   "name" : "Geladeira Vermelha",
-   "descripion" : "Este produto é totalmente versátil. Tudo para ser
-    personalizado para comportar o que você preferir.",
-   "tension": "220v",
-   "brand_id": 1
+   "nome" : "Geladeira Vermelha",
+   "valor" : 1090, 
+   "loja_id": 1
 }`
 
 ii. Resposta: 
 
 success.
 `{
-    "message": "Produto editado com sucesso",
-    "newProduct": {
-        "id": 5,
-        "name": "nome2 atualizadooooo",
-        "description": "descricao",
-        "tension": "110",
-        "brand_id": "1",
-        "created_at": "2022-07-22T04:47:53.000000Z",
-        "updated_at": "2022-07-22T06:45:44.000000Z"
-    }
+    "mensagem": "mensagem de sucesso",
 }`
 
 error. 
@@ -91,7 +82,7 @@ error.
 
 `3. Exclusão:` 
 
-i. `DELETE` - /api/products/{id}
+i. `DELETE` - /api/produtos/{id}
 
 ii. Resposta 
 
@@ -109,7 +100,7 @@ error.
 
 `4. Apresentar todos produtos:` 
 
-i. `GET` - /api/products
+i. `GET` - /api/produtos
 
 
 
