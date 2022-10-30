@@ -3,6 +3,8 @@
 </p>
 
 
+## O MODELO DA APLICACAO FOI INICADA A PARTIR DE UM PROJETO QUE TENHO DE BASE NA MINHA MAQUINA COM LARAVEL + VUE 
+
 ## Testando a aplicação 
 
 O projeto deverá ser iniciado na máquina com a criação do banco de dados, em seguida do comando 
