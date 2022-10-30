@@ -29,7 +29,7 @@ Para testar essa funcionalidade que foi aplicada no registro e edição de produ
 i. `POST` - /api/produtos  (loja_id é um atributo que se refere ao id na loja)
 
 `{
-   "name" : "Geladeira",
+   "nome" : "Geladeira",
    "valor" : 1090,
    "loja_id": 1 //inicialmente deverá ser registrado uma loja dentro do banco de dados
 }`
